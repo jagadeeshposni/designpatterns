@@ -2,12 +2,41 @@ package com.jagadeeshposni.designpatterns.creational.builder;
 
 public class Account {
 
-    private String firstName;
-    private String lastName;
-    private String middleName;
+    private final String firstName;
+    private final String lastName;
+    private final String middleName;
 
-    private String accountNumber;
-    private String balance;
+    private final String accountNumber;
+    private final String balance;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+
+    private Account(Builder builder){
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.middleName = builder.middleName;
+
+        this.accountNumber = builder.accountNumber;
+        this.balance = builder.balance;
+    }
 
 //    private String houseNo;
 //    private String street;
@@ -16,9 +45,6 @@ public class Account {
 //    private String country;
 //    private String pincode;
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
 
     public static class Builder {
         private String firstName;
@@ -37,12 +63,9 @@ public class Account {
 //        private String country;
 //        private String pincode;
 
-        public Builder(){
-
-        }
-
         public Account build(){
-            return new Account();
+
+            return new Account(this);
         }
 
         public Builder firstName(final String firstName){
